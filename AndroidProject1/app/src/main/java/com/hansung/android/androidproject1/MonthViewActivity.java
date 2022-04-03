@@ -87,5 +87,43 @@ public class MonthViewActivity extends AppCompatActivity {
             }
         });
 
+        Button Prevbtn = findViewById(R.id.previous_button);
+        Button Nextbtn = findViewById(R.id.next_button);
+
+        //이전 버튼 클릭시
+        Prevbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent bt_Intent = new Intent(getApplicationContext(), MonthViewActivity.class);
+                if (month < 1) {
+                    bt_Intent.putExtra("year", year - 1);
+                    bt_Intent.putExtra("month", 11);
+                }//1월에서 이전 버튼을 누르면 이전 연도로 넘어감
+                else {
+                    bt_Intent.putExtra("year", year);
+                    bt_Intent.putExtra("month", (month - 1));
+                }
+                startActivity(bt_Intent);
+                finish();
+            }
+        });
+
+        //다음 버튼 클릭시
+        Nextbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent bt_Intent = new Intent(getApplicationContext(), MonthViewActivity.class);
+                if (month > 10) {
+                    bt_Intent.putExtra("year", year + 1);
+                    bt_Intent.putExtra("month", 0);
+                }//12월에서 다음 버튼을 누르면 다음년도로 넘어감
+                else {
+                    bt_Intent.putExtra("year", year);
+                    bt_Intent.putExtra("month", (month + 1));
+                }
+                startActivity(bt_Intent);
+                finish();
+            }
+        });
     }
 }
