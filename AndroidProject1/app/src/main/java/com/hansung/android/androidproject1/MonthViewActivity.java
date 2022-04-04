@@ -81,7 +81,7 @@ public class MonthViewActivity extends AppCompatActivity {
                                     int position, long id) {
                 if (position >= day) { // 1일보다 앞이면 반응하지 않기.
                     Toast.makeText(MonthViewActivity.this,
-                            year + "." + (month + 1) + "." + (position - day + 1),
+                            year + "년" + (month + 1) + "월" + (position - day + 1)+ "일",
                             Toast.LENGTH_SHORT).show();
                 }
             }
