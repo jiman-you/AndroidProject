@@ -34,6 +34,18 @@ public class MonthViewActivity extends AppCompatActivity {
             inflater.inflate(R.menu.main_menu, menu);
             return super.onCreateOptionsMenu(menu);
         }
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.month://월간달력 불러오기
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_container, new MonthViewFragment()).commit();
+                    return true;
+
+                case R.id.week://주간달력 불러오기
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_container, new WeekViewFragment()).commit();
+                    return true;
+                default:
+                    return super.onOptionsItemSelected(item);
             }
-        });
+        }
     }
