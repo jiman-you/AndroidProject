@@ -75,9 +75,9 @@ public class WeekCalendarFragment extends Fragment {
         //그리드뷰로 week_day설정.
         GridView day = rootView.findViewById(R.id.week_day);
         //왼쪽의 타임라인.
-        ExpandableHeightGridView time = (ExpandableHeightGridView) rootView.findViewById(R.id.time);
+        TwoLineScroll time = (TwoLineScroll) rootView.findViewById(R.id.time);
         //격자표시.
-        ExpandableHeightGridView timeB = (ExpandableHeightGridView) rootView.findViewById(R.id.time_blank);
+        TwoLineScroll timeB = (TwoLineScroll) rootView.findViewById(R.id.time_blank);
         time.setExpanded(true);
         timeB.setExpanded(true);
 
