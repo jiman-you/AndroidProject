@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.GridView;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
@@ -71,6 +73,12 @@ public class WeekViewFragment extends Fragment {
                              Bundle savedInstanceState) {
         //fragment_week_view를 레이아웃 설정.
         View rootView = inflater.inflate(R.layout.fragment_week_view, container, false);
+        GridView day_of_the_week = rootView.findViewById(R.id.day_of_the_week_week);
+        final String[] dayOfTheWeek = new String[]{"일", "월", "화", "수", "목", "금", "토"};
+        ArrayAdapter<String> DOWadapter = new ArrayAdapter<>(getActivity(),
+                R.layout.day_of_the_week,
+                dayOfTheWeek);
+        day_of_the_week.setAdapter(DOWadapter);
 
         //화면 전환을 위해 ViewPager2를 사용함.
         ViewPager2 vpPager = rootView.findViewById(R.id.week_vp2);

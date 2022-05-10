@@ -9,13 +9,17 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.GridView;
+
+import java.util.Calendar;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link MonthViewFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MonthViewFragment extends Fragment {
+public class    MonthViewFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -63,12 +67,19 @@ public class MonthViewFragment extends Fragment {
         // Inflate으로 fragment_month_view.xml 연결
         View rootview = inflater.inflate(R.layout.fragment_month_view, container, false);
 
+        GridView day_of_the_week = rootview.findViewById(R.id.day_of_the_week_month);
+        final String[] dayOfTheWeek = new String[]{"일", "월", "화", "수", "목", "금", "토"};
+        ArrayAdapter<String> DOWadapter = new ArrayAdapter<>(getActivity(),
+                R.layout.day_of_the_week,
+                dayOfTheWeek);
+        day_of_the_week.setAdapter(DOWadapter);
+
         //화면 전환을 위해 ViewPager2를 사용함.
         ViewPager2 vpPager = rootview.findViewById(R.id.month_vp1);
         //MonthCalendarAdapter에서 데이터 전달.
         FragmentStateAdapter adapter = new MonthCalendarAdapter(getActivity());
         vpPager.setAdapter(adapter);
-
+        
         //MonthCalendarAdapter에서 데이터 가져옴.
         int year = ((MonthCalendarAdapter) adapter).year;
         int month = ((MonthCalendarAdapter) adapter).month;

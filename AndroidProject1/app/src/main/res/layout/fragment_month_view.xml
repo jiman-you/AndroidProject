@@ -10,13 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <!--하드코딩 풀어야함-->
-        <TextView
+        <GridView
+            android:id="@+id/day_of_the_week_month"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:text="       일           월           화           수           목            금           토"
-            android:background="#96CF55"
-            />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="#99cc00"
+            android:numColumns="7"
+            android:stretchMode="columnWidth"/>
+
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/month_vp1"
             android:layout_width="match_parent"
