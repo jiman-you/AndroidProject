@@ -1,0 +1,20 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/calendar"
+    android:orientation="vertical"
+    tools:context=".MonthCalendarFragment">
+    <!-- 7칸 그리드뷰 배경-보라색-->
+    <GridView
+        android:id="@+id/gridview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="#8B00FF"
+        android:numColumns="7"
+        android:stretchMode="columnWidth"
+        android:horizontalSpacing="1dp"
+        android:verticalSpacing="1dp"
+        />
+</LinearLayout>
