@@ -10,10 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidProject1">
         <activity
+            android:name=".NewSchedule"
+            android:exported="true" />
+
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyD4zA0G3hUyZZCfknJG7T_v15GvMcw_iO4" />
+
+        <activity
             android:name=".MonthViewActivity"
-            android:exported="true"
             android:configChanges="orientation|screenSize"
-            >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
