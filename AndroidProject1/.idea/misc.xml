@@ -5,6 +5,9 @@
       <map>
         <entry key="..\:/Users/admin/AndroidStudioProjects/AndroidProject/AndroidProject1/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/AndroidProject/AndroidProject1/app/src/main/res/layout/item_calendar_gridview.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/sjyj9/AndroidStudioProjects/AndroidProject/AndroidProject1/app/src/main/res/layout/activity_new_schedule.xml" value="0.1" />
+        <entry key="..\:/Users/sjyj9/AndroidStudioProjects/AndroidProject/AndroidProject1/app/src/main/res/layout/fragment_month_view.xml" value="0.13269927536231885" />
+        <entry key="..\:/Users/sjyj9/AndroidStudioProjects/AndroidProject/AndroidProject1/app/src/main/res/layout/fragment_week_view.xml" value="0.13269927536231885" />
       </map>
     </option>
   </component>

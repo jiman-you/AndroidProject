@@ -1,18 +1,19 @@
 package com.hansung.android.androidproject1;
 
+import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 
-import java.util.Calendar;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +30,16 @@ public class    MonthViewFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    DBHelper dbHelper;
+    Cursor cursor;
+
+    String data_d;
+    int data_year;
+    int data_month;
+    int data_day;
+    int data_hour;
+    int data_minute;
+    int data_st;
 
     public MonthViewFragment() {
         // Required empty public constructor
@@ -69,17 +80,17 @@ public class    MonthViewFragment extends Fragment {
 
         GridView day_of_the_week = rootview.findViewById(R.id.day_of_the_week_month);
         final String[] dayOfTheWeek = new String[]{"일", "월", "화", "수", "목", "금", "토"};
-        ArrayAdapter<String> DOWadapter = new ArrayAdapter<>(getActivity(),
+        ArrayAdapter<String> dayAdapter = new ArrayAdapter<>(getActivity(),
                 R.layout.day_of_the_week,
                 dayOfTheWeek);
-        day_of_the_week.setAdapter(DOWadapter);
+        day_of_the_week.setAdapter(dayAdapter);
 
         //화면 전환을 위해 ViewPager2를 사용함.
         ViewPager2 vpPager = rootview.findViewById(R.id.month_vp1);
         //MonthCalendarAdapter에서 데이터 전달.
         FragmentStateAdapter adapter = new MonthCalendarAdapter(getActivity());
         vpPager.setAdapter(adapter);
-        
+
         //MonthCalendarAdapter에서 데이터 가져옴.
         int year = ((MonthCalendarAdapter) adapter).year;
         int month = ((MonthCalendarAdapter) adapter).month;
@@ -94,6 +105,34 @@ public class    MonthViewFragment extends Fragment {
             public void onPageSelected(int position) {
                 ((MonthViewActivity) getActivity()).getSupportActionBar().setTitle((year + (month + position + 10) / 12 - 5) + "년 " + ((month + position + 10) % 12 + 1) + "월");
 
+            }
+        });
+
+        //플로팅 액션 바
+        FloatingActionButton fab = rootview.findViewById(R.id.flbtn1);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //값 전달
+                data_d = ((MonthViewActivity) getActivity()).mainDate;
+                data_year = ((MonthViewActivity) getActivity()).mainYear;
+                data_month = ((MonthViewActivity) getActivity()).mainMonth;
+                data_day = ((MonthViewActivity) getActivity()).mainDay;
+                data_hour = ((MonthViewActivity) getActivity()).mainHour;
+                data_minute = ((MonthViewActivity) getActivity()).mainMinute;
+                data_st = ((MonthViewActivity) getActivity()).mainStartTime;
+
+                Intent intent = new Intent(getActivity(), NewSchedule.class);
+                intent.putExtra("date", data_d);
+                intent.putExtra("startTime",data_st);
+                intent.putExtra("date", data_d);
+                intent.putExtra("year", data_year);
+                intent.putExtra("month", data_month);
+                intent.putExtra("day", data_day);
+                intent.putExtra("hour", data_hour);
+                intent.putExtra("minute", data_minute);
+
+                startActivity(intent);
             }
         });
         return rootview;

@@ -2,9 +2,6 @@ package com.hansung.android.androidproject1;
 
 import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +11,8 @@ import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.time.Year;
+import androidx.fragment.app.Fragment;
+
 import java.util.Calendar;
 
 /**
@@ -88,10 +86,16 @@ public class MonthCalendarFragment extends Fragment {
                             Toast.LENGTH_SHORT).show();
                     if(sel_day!=null) sel_day.setBackgroundColor(Color.WHITE); //이전 선택된 텍스트 뷰 흰색으로 돌리기.
                     sel_day = v.findViewById(R.id.day_text);
-                    sel_day.setBackgroundColor(Color.CYAN); //선택된 텍스트 뷰 CYAN으로 색변경.
+                    sel_day.setBackgroundColor(Color.CYAN); //선택된 텍스트 뷰 CYAN으로 색변경
+                    ((MonthViewActivity)getActivity()).mainDate = String.format("%d년 %d월 %d일", mParam1,mParam2,(position - dayOfWeek + 1));
+                    ((MonthViewActivity)getActivity()).mainYear = mParam1;
+                    ((MonthViewActivity)getActivity()).mainMonth = mParam2;
+                    ((MonthViewActivity)getActivity()).mainDay = (position - dayOfWeek + 1);
                 }
             }
         });
+
         return rootview;
     }
+
 }
