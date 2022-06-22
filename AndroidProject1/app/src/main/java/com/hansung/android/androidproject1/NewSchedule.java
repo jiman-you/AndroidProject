@@ -11,7 +11,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.NumberPicker;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,11 +36,24 @@ import java.util.List;
 import java.util.Locale;
 
 public class NewSchedule extends AppCompatActivity implements OnMapReadyCallback {
-    public ActivityNewScheduleBinding binding;
+    public ActivityNewScheduleBinding binding;// 레이아웃 내 값이 많아 바인딩 사용
     private FusedLocationProviderClient mFusedLocationClient;
     GoogleMap mGoogleMap = null;
     private Geocoder geocoder;
     private DBHelper dbHelper;
+    private GoogleMap GoogleMap = null;
+    EditText mId;
+    EditText mTitle;
+    EditText mshour;
+    EditText msMin;
+    EditText msMeridiem;
+    EditText meHour;
+    EditText meMin;
+    EditText meMeridim;
+    EditText mPlace;
+    EditText mMemo;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +63,7 @@ public class NewSchedule extends AppCompatActivity implements OnMapReadyCallback
         //전달받은 값 가져오기
         Intent intent = getIntent();
         EditText date = findViewById(R.id.TitleText);
-        date.setText(intent.getStringExtra("date"));
+        date.setText(intent.getStringExtra("date"));//선택된 연월시분
         EditText location = findViewById(R.id.Location);
         EditText usertext = findViewById(R.id.UserText);
         int year = intent.getIntExtra("year", 0);
@@ -57,8 +72,6 @@ public class NewSchedule extends AppCompatActivity implements OnMapReadyCallback
         int hour = intent.getIntExtra("hour", 0);
         int minute = intent.getIntExtra("minute", 0);
 
-        MonthViewFragment monthViewFragment = new MonthViewFragment();
-        Bundle bundle = new Bundle();
 
         SQLiteDatabase db;
 
@@ -84,6 +97,7 @@ public class NewSchedule extends AppCompatActivity implements OnMapReadyCallback
         //SQLite 이용
         dbHelper = new DBHelper(this);
         Button save_btn = findViewById(R.id.Up);
+        //업로드
         save_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,26 +112,31 @@ public class NewSchedule extends AppCompatActivity implements OnMapReadyCallback
                         month,
                         day
                 );
+                //텍스트 뷰로 표현 리스트뷰 실패
                 viewAllToTextView();
+               // viewAllToListView();
             }
         });
-        //뒤로 돌아가기
+
+        //취소버튼 뒤로 돌아가기
         Button cancel_btn = findViewById(R.id.Can);
         cancel_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //취소 버튼 눌리면 액티비티 종료
                 finish();
             }
         });
-        
-        //삭제시 다이얼 로그 구현
+
+        //삭제시 다이얼 로그
         AlertDialog.Builder dlg = new AlertDialog.Builder(NewSchedule.this);
         dlg.setMessage("정말 삭제하시겠습니까?");
         dlg.setNegativeButton("삭제", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dbHelper.deleteMemoBySQL(year, month, day);//삭제 누르면 삭제실행
-                viewAllToTextView();
+              viewAllToTextView();
+               // viewAllToListView();
             }
         });
         dlg.setPositiveButton("취소",null);
@@ -144,11 +163,9 @@ public class NewSchedule extends AppCompatActivity implements OnMapReadyCallback
             }
         });
 
-
     }
 
-    //SQLite 관련 함수
-    //저장 삭제 확인용으로 지워도 무방
+    //텍스트뷰로 보여주기
     private void viewAllToTextView() {
         TextView result = (TextView)findViewById(R.id.result);
 
@@ -158,22 +175,67 @@ public class NewSchedule extends AppCompatActivity implements OnMapReadyCallback
         while (cursor.moveToNext()) {
             buffer.append(cursor.getInt(0)+" \t");
             buffer.append(cursor.getString(1)+" \t");
-            buffer.append(cursor.getString(2)+" \t");
-            buffer.append(cursor.getString(3)+" \t");
-            buffer.append(cursor.getString(4)+" \t");
-            buffer.append(cursor.getString(5)+" \t");
-            buffer.append(cursor.getString(6)+" \t");
-            buffer.append(cursor.getString(7)+" \t");
-            buffer.append(cursor.getString(8)+" \t");
-            buffer.append(cursor.getString(9)+" \t");
-            buffer.append(cursor.getString(10)+" \t");
-            buffer.append(cursor.getString(11)+" \t");
-            buffer.append(cursor.getString(12)+" \n");
+            buffer.append(cursor.getString(2)+" 시\t");
+            buffer.append(cursor.getString(3)+" 분\t");
+            buffer.append(cursor.getString(4)+" 부터\t");
+            buffer.append(cursor.getString(5)+" 시\t");
+            buffer.append(cursor.getString(6)+" 분\t");
+            buffer.append(cursor.getString(7)+" 까지\t장소");
+            buffer.append(cursor.getString(8)+" \t메모");
+            buffer.append(cursor.getString(9)+" \t실행일");
+            buffer.append(cursor.getString(10)+" 년\t");
+            buffer.append(cursor.getString(11)+" 월\t");
+            buffer.append(cursor.getString(12)+" 일\n");
         }
         result.setText(buffer);
     }
+//    리스트뷰로 보여주기
+    private void viewAllToListView() {
 
-    //지도 관련 함수
+        Cursor cursor = dbHelper.getAllUsersByMethod();
+
+                SimpleCursorAdapter adapter = new SimpleCursorAdapter(getApplicationContext(),
+                        R.layout.item, cursor, new String[]{
+                        DBContract.Memos._ID,
+                        DBContract.Memos.KEY_TITLE,
+                        DBContract.Memos.KEY_S_HOUR,
+                        DBContract.Memos.KEY_S_MIN,
+                        DBContract.Memos.KEY_S_MERIDIEM,
+                        DBContract.Memos.KEY_E_HOUR,
+                        DBContract.Memos.KEY_E_MIN,
+                        DBContract.Memos.KEY_E_MERIDIEM,
+                        DBContract.Memos.KEY_PLACE,
+                        DBContract.Memos.KEY_MEMO},
+                        new int[]{R.id._id, R.id._title, R.id._sHour, R.id._sMin, R.id._sMeridiem, R.id._eHour, R.id._eMin,
+                                R.id._eMeridiem, R.id._place, R.id._memo}, 0);
+
+                ListView lv = (ListView) findViewById(R.id.listview);
+                lv.setAdapter(adapter);
+
+//        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Adapter adapter = adapterView.getAdapter();
+//
+//                mId.setText(((Cursor)adapter.getItem(i)).getString(0));
+//                mTitle.setText(((Cursor)adapter.getItem(i)).getString(1));
+//                mshour.setText(((Cursor)adapter.getItem(i)).getString(2));
+//                msMin.setText(((Cursor)adapter.getItem(i)).getString(3));
+//                msMeridiem.setText(((Cursor)adapter.getItem(i)).getString(4));
+//                meHour.setText(((Cursor)adapter.getItem(i)).getString(5));
+//                meMin.setText(((Cursor)adapter.getItem(i)).getString(6));
+//                meMeridim.setText(((Cursor)adapter.getItem(i)).getString(7));
+//                mPlace.setText(((Cursor)adapter.getItem(i)).getString(8));
+//                mMemo.setText(((Cursor)adapter.getItem(i)).getString(9));
+//            }
+//        });
+//        lv.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+    }
+
+
+
+
+    //지도관련
     private void getLocation() {
         EditText map_text = findViewById(R.id.Location);
         String search_address = map_text.getText().toString();
@@ -197,11 +259,12 @@ public class NewSchedule extends AppCompatActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mGoogleMap = googleMap;
         geocoder = new Geocoder(this, Locale.KOREA);
-        //여기에 선택된 인자 받아서 처음 들어왔을 때 저장했던 위치 뜨게 할 거임.
+        //한국기준 Locale 설정
 
-        // move the camera
+        //카메라 움직임
         mGoogleMap.setOnMarkerClickListener(new MyMarkerClickListener());
     }
+    //마커표기
     class MyMarkerClickListener implements GoogleMap.OnMarkerClickListener {
         @Override
         public boolean onMarkerClick(Marker marker) {
@@ -210,3 +273,5 @@ public class NewSchedule extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 }
+
+

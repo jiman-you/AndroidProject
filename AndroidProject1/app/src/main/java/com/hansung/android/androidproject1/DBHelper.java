@@ -14,6 +14,7 @@ public class DBHelper extends SQLiteOpenHelper {
         super(context, DBContract.DB_NAME, null, DBContract.DATABASE_VERSION);
     }
 
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.i(TAG, getClass().getName() + ".onCreate()");
@@ -26,7 +27,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(DBContract.Memos.DELETE_TABLE);
         onCreate(db);
     }
-
+    //추가
     public void insertMemoBySQL(String title, int sh, int sm, int sme, int eh, int em, int eme, String place, String memo, int ye, int mo, int da) {
         try {
             String sql = String.format (
@@ -51,6 +52,7 @@ public class DBHelper extends SQLiteOpenHelper {
             Log.e(TAG,"Error in inserting recodes");
         }
     }
+    //삭제
     public void deleteMemoBySQL(int year, int month, int day) {
         try {
             String sql = String.format (
@@ -67,15 +69,20 @@ public class DBHelper extends SQLiteOpenHelper {
             Log.e(TAG,"Error in deleting recodes");
         }
     }
-    public Cursor getAllMemosBySQL() {
-        String sql = "Select * FROM " + DBContract.Memos.TABLE_NAME;
-        return getReadableDatabase().rawQuery(sql,null);
-    }
+    //    public Cursor getDayMemosBySQL(String year, String month, String day) {
+//        String sql = "Select * FROM " + DBContract.Memos.TABLE_NAME +" WHERE KEY_YEAR=" + year+" AND KEY_MONTH= " + month+" AND KEY_DAY= " + day;
+//        return getReadableDatabase().rawQuery(sql,null);
+//    }
 
-    public Cursor selectMemosBySQL(int year, int month, int day) {
+//    public Cursor getDayMemosBySQL(int scheduleYear, int scheduleMonth, int scheduleDay) {
+//        String sql = "Select * FROM " + DBContract.Memos.TABLE_NAME +" WHERE DBContract.Memos.KEY_YEAR= '" + scheduleYear+"' AND DBContract.Memos.KEY_MONTH= '" + scheduleMonth+"' AND DBContract.Memos.KEY_DAY= '" + scheduleDay+"'";
+//        return getReadableDatabase().rawQuery(sql,null);
+//    }
+
+    public Cursor selectMemosBySQL(String year, String month, String day) {
         try{
-            String sql = String.format("SELECT %s FROM %s WHERE %s = %s AND %s = %d AND %s = %s",
-                    DBContract.Memos.KEY_TITLE,
+            String sql = String.format(
+                    "SELECT FROM %s WHERE %s = %s AND %s = %s AND %s = %s",
                     DBContract.Memos.TABLE_NAME,
                     DBContract.Memos.KEY_YEAR,
                     year,
@@ -90,4 +97,14 @@ public class DBHelper extends SQLiteOpenHelper {
         }
 
     }
+    public Cursor getAllMemosBySQL() {
+        String sql = "Select * FROM " + DBContract.Memos.TABLE_NAME;
+        return getReadableDatabase().rawQuery(sql,null);
+    }
+    public Cursor getAllUsersByMethod() {
+        SQLiteDatabase db = getReadableDatabase();
+        return db.query(DBContract.Memos.TABLE_NAME,null,null,null,null,null,null);
+    }
+
+
 }

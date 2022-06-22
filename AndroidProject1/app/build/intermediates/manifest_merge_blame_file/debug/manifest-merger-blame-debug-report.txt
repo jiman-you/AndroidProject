@@ -10,63 +10,126 @@
 9        android:targetSdkVersion="31" />
 9-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml
 10
-11    <application
-11-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:5:5-21:19
-12        android:allowBackup="true"
-12-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:6:9-35
-13        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-13-->[androidx.core:core:1.7.0] C:\Users\admin\.gradle\caches\transforms-3\376792b261fdcbfd86757f02ea12377d\transformed\core-1.7.0\AndroidManifest.xml:24:18-86
-14        android:debuggable="true"
-15        android:icon="@mipmap/ic_launcher"
-15-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:7:9-43
-16        android:label="@string/app_name"
-16-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:8:9-41
-17        android:roundIcon="@mipmap/ic_launcher_round"
-17-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:9:9-54
-18        android:supportsRtl="true"
-18-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:10:9-35
-19        android:testOnly="true"
-20        android:theme="@style/Theme.AndroidProject1" >
-20-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:11:9-53
-21        <activity
-21-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:12:9-20:20
-22            android:name="com.hansung.android.androidproject1.MonthViewActivity"
-22-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:13:13-46
-23            android:exported="true" >
-23-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:14:13-36
-24            <intent-filter>
-24-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:15:13-19:29
-25                <action android:name="android.intent.action.MAIN" />
-25-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:16:17-69
-25-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:16:25-66
-26
-27                <category android:name="android.intent.category.LAUNCHER" />
-27-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:18:17-77
-27-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:18:27-74
-28            </intent-filter>
-29        </activity>
-30
-31        <provider
-31-->[androidx.emoji2:emoji2:1.0.0] C:\Users\admin\.gradle\caches\transforms-3\8b7c53cedc320aafa8740bc99100eae7\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:26:9-34:20
-32            android:name="androidx.startup.InitializationProvider"
-32-->[androidx.emoji2:emoji2:1.0.0] C:\Users\admin\.gradle\caches\transforms-3\8b7c53cedc320aafa8740bc99100eae7\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:27:13-67
-33            android:authorities="com.hansung.android.androidproject1.androidx-startup"
-33-->[androidx.emoji2:emoji2:1.0.0] C:\Users\admin\.gradle\caches\transforms-3\8b7c53cedc320aafa8740bc99100eae7\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:28:13-68
-34            android:exported="false" >
-34-->[androidx.emoji2:emoji2:1.0.0] C:\Users\admin\.gradle\caches\transforms-3\8b7c53cedc320aafa8740bc99100eae7\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:29:13-37
-35            <meta-data
-35-->[androidx.emoji2:emoji2:1.0.0] C:\Users\admin\.gradle\caches\transforms-3\8b7c53cedc320aafa8740bc99100eae7\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:31:13-33:52
-36                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-36-->[androidx.emoji2:emoji2:1.0.0] C:\Users\admin\.gradle\caches\transforms-3\8b7c53cedc320aafa8740bc99100eae7\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:32:17-75
-37                android:value="androidx.startup" />
-37-->[androidx.emoji2:emoji2:1.0.0] C:\Users\admin\.gradle\caches\transforms-3\8b7c53cedc320aafa8740bc99100eae7\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:33:17-49
-38            <meta-data
-38-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\admin\.gradle\caches\transforms-3\e3d5f7348f31abeaadb43deed4aab633\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:31:13-33:52
-39                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-39-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\admin\.gradle\caches\transforms-3\e3d5f7348f31abeaadb43deed4aab633\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:32:17-78
-40                android:value="androidx.startup" />
-40-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\admin\.gradle\caches\transforms-3\e3d5f7348f31abeaadb43deed4aab633\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:33:17-49
-41        </provider>
-42    </application>
-43
-44</manifest>
+11    <!-- Include required permissions for Google Maps API to run. -->
+12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+12-->[com.google.android.gms:play-services-maps:17.0.1] C:\Users\admin\.gradle\caches\transforms-3\b5c25d7a48148c73ceb291032312e2d9\transformed\jetified-play-services-maps-17.0.1\AndroidManifest.xml:23:5-79
+12-->[com.google.android.gms:play-services-maps:17.0.1] C:\Users\admin\.gradle\caches\transforms-3\b5c25d7a48148c73ceb291032312e2d9\transformed\jetified-play-services-maps-17.0.1\AndroidManifest.xml:23:22-76
+13    <uses-permission android:name="android.permission.INTERNET" />
+13-->[com.google.android.gms:play-services-maps:17.0.1] C:\Users\admin\.gradle\caches\transforms-3\b5c25d7a48148c73ceb291032312e2d9\transformed\jetified-play-services-maps-17.0.1\AndroidManifest.xml:24:5-67
+13-->[com.google.android.gms:play-services-maps:17.0.1] C:\Users\admin\.gradle\caches\transforms-3\b5c25d7a48148c73ceb291032312e2d9\transformed\jetified-play-services-maps-17.0.1\AndroidManifest.xml:24:22-64
+14
+15    <uses-feature
+15-->[com.google.android.gms:play-services-maps:17.0.1] C:\Users\admin\.gradle\caches\transforms-3\b5c25d7a48148c73ceb291032312e2d9\transformed\jetified-play-services-maps-17.0.1\AndroidManifest.xml:26:5-28:35
+16        android:glEsVersion="0x00020000"
+16-->[com.google.android.gms:play-services-maps:17.0.1] C:\Users\admin\.gradle\caches\transforms-3\b5c25d7a48148c73ceb291032312e2d9\transformed\jetified-play-services-maps-17.0.1\AndroidManifest.xml:27:9-41
+17        android:required="true" />
+17-->[com.google.android.gms:play-services-maps:17.0.1] C:\Users\admin\.gradle\caches\transforms-3\b5c25d7a48148c73ceb291032312e2d9\transformed\jetified-play-services-maps-17.0.1\AndroidManifest.xml:28:9-32
+18
+19    <queries>
+19-->[com.google.android.gms:play-services-maps:17.0.1] C:\Users\admin\.gradle\caches\transforms-3\b5c25d7a48148c73ceb291032312e2d9\transformed\jetified-play-services-maps-17.0.1\AndroidManifest.xml:30:5-34:15
+20
+21        <!-- Needs to be explicitly declared on Android R+ -->
+22        <package android:name="com.google.android.apps.maps" />
+22-->[com.google.android.gms:play-services-maps:17.0.1] C:\Users\admin\.gradle\caches\transforms-3\b5c25d7a48148c73ceb291032312e2d9\transformed\jetified-play-services-maps-17.0.1\AndroidManifest.xml:33:9-64
+22-->[com.google.android.gms:play-services-maps:17.0.1] C:\Users\admin\.gradle\caches\transforms-3\b5c25d7a48148c73ceb291032312e2d9\transformed\jetified-play-services-maps-17.0.1\AndroidManifest.xml:33:18-61
+23    </queries>
+24
+25    <application
+25-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:5:5-36:19
+26        android:allowBackup="true"
+26-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:6:9-35
+27        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+27-->[androidx.core:core:1.7.0] C:\Users\admin\.gradle\caches\transforms-3\376792b261fdcbfd86757f02ea12377d\transformed\core-1.7.0\AndroidManifest.xml:24:18-86
+28        android:debuggable="true"
+29        android:icon="@mipmap/ic_launcher"
+29-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:7:9-43
+30        android:label="@string/app_name"
+30-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:8:9-41
+31        android:roundIcon="@mipmap/ic_launcher_round"
+31-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:9:9-54
+32        android:supportsRtl="true"
+32-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:10:9-35
+33        android:testOnly="true"
+34        android:theme="@style/Theme.AndroidProject1" >
+34-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:11:9-53
+35        <activity
+35-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:12:9-14:39
+36            android:name="com.hansung.android.androidproject1.NewSchedule"
+36-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:13:13-40
+37            android:exported="true" />
+37-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:14:13-36
+38
+39        <meta-data
+39-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:17:9-19:69
+40            android:name="com.google.android.gms.version"
+40-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:18:13-58
+41            android:value="@integer/google_play_services_version" />
+41-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:19:13-66
+42        <meta-data
+42-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:20:9-22:71
+43            android:name="com.google.android.geo.API_KEY"
+43-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:21:13-58
+44            android:value="AIzaSyD4zA0G3hUyZZCfknJG7T_v15GvMcw_iO4" />
+44-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:22:13-68
+45
+46        <activity
+46-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:24:9-35:20
+47            android:name="com.hansung.android.androidproject1.MonthViewActivity"
+47-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:25:13-46
+48            android:configChanges="orientation|screenSize"
+48-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:27:13-59
+49            android:exported="true" >
+49-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:26:13-36
+50            android:exported="true">
+51            <intent-filter>
+51-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:30:13-34:29
+52                <action android:name="android.intent.action.MAIN" />
+52-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:31:17-69
+52-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:31:25-66
+53
+54                <category android:name="android.intent.category.LAUNCHER" />
+54-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:33:17-77
+54-->C:\Users\admin\AndroidStudioProjects\AndroidProject\AndroidProject1\app\src\main\AndroidManifest.xml:33:27-74
+55            </intent-filter>
+56        </activity>
+57        <!-- Needs to be explicitly declared on P+ -->
+58        <uses-library
+58-->[com.google.android.gms:play-services-maps:17.0.1] C:\Users\admin\.gradle\caches\transforms-3\b5c25d7a48148c73ceb291032312e2d9\transformed\jetified-play-services-maps-17.0.1\AndroidManifest.xml:39:9-41:40
+59            android:name="org.apache.http.legacy"
+59-->[com.google.android.gms:play-services-maps:17.0.1] C:\Users\admin\.gradle\caches\transforms-3\b5c25d7a48148c73ceb291032312e2d9\transformed\jetified-play-services-maps-17.0.1\AndroidManifest.xml:40:13-50
+60            android:required="false" />
+60-->[com.google.android.gms:play-services-maps:17.0.1] C:\Users\admin\.gradle\caches\transforms-3\b5c25d7a48148c73ceb291032312e2d9\transformed\jetified-play-services-maps-17.0.1\AndroidManifest.xml:41:13-37
+61
+62        <activity
+62-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\admin\.gradle\caches\transforms-3\2741ab75c4ca9c5a4fed7205aeaaa3ac\transformed\jetified-play-services-base-17.5.0\AndroidManifest.xml:23:9-26:75
+63            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+63-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\admin\.gradle\caches\transforms-3\2741ab75c4ca9c5a4fed7205aeaaa3ac\transformed\jetified-play-services-base-17.5.0\AndroidManifest.xml:24:13-79
+64            android:exported="false"
+64-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\admin\.gradle\caches\transforms-3\2741ab75c4ca9c5a4fed7205aeaaa3ac\transformed\jetified-play-services-base-17.5.0\AndroidManifest.xml:25:13-37
+65            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+65-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\admin\.gradle\caches\transforms-3\2741ab75c4ca9c5a4fed7205aeaaa3ac\transformed\jetified-play-services-base-17.5.0\AndroidManifest.xml:26:13-72
+66
+67        <provider
+67-->[androidx.emoji2:emoji2:1.0.0] C:\Users\admin\.gradle\caches\transforms-3\8b7c53cedc320aafa8740bc99100eae7\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:26:9-34:20
+68            android:name="androidx.startup.InitializationProvider"
+68-->[androidx.emoji2:emoji2:1.0.0] C:\Users\admin\.gradle\caches\transforms-3\8b7c53cedc320aafa8740bc99100eae7\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:27:13-67
+69            android:authorities="com.hansung.android.androidproject1.androidx-startup"
+69-->[androidx.emoji2:emoji2:1.0.0] C:\Users\admin\.gradle\caches\transforms-3\8b7c53cedc320aafa8740bc99100eae7\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:28:13-68
+70            android:exported="false" >
+70-->[androidx.emoji2:emoji2:1.0.0] C:\Users\admin\.gradle\caches\transforms-3\8b7c53cedc320aafa8740bc99100eae7\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:29:13-37
+71            <meta-data
+71-->[androidx.emoji2:emoji2:1.0.0] C:\Users\admin\.gradle\caches\transforms-3\8b7c53cedc320aafa8740bc99100eae7\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:31:13-33:52
+72                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+72-->[androidx.emoji2:emoji2:1.0.0] C:\Users\admin\.gradle\caches\transforms-3\8b7c53cedc320aafa8740bc99100eae7\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:32:17-75
+73                android:value="androidx.startup" />
+73-->[androidx.emoji2:emoji2:1.0.0] C:\Users\admin\.gradle\caches\transforms-3\8b7c53cedc320aafa8740bc99100eae7\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:33:17-49
+74            <meta-data
+74-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\admin\.gradle\caches\transforms-3\e3d5f7348f31abeaadb43deed4aab633\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:31:13-33:52
+75                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+75-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\admin\.gradle\caches\transforms-3\e3d5f7348f31abeaadb43deed4aab633\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:32:17-78
+76                android:value="androidx.startup" />
+76-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\admin\.gradle\caches\transforms-3\e3d5f7348f31abeaadb43deed4aab633\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:33:17-49
+77        </provider>
+78    </application>
+79
+80</manifest>
